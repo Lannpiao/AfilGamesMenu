@@ -1,0 +1,1 @@
+teclado(menu) // SELECIONANDO MENU PELO TECLADO
