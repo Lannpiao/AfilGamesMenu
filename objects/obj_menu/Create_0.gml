@@ -12,13 +12,13 @@ _sair			= noone
 teclado			= function(_menu)// SELECIONANDO MENU PELO TECLADO
 {
 	var  _cima, _baixo, _menu_comprimento, _esquer, _direta;
-	_cima						= keyboard_check_pressed(vk_up); // checando se eu apertei a tecla UP do teclado
-	_baixo					= keyboard_check_pressed(vk_down); // checando se eu apertei a tecla DOWN do teclado
-	_esquer					= keyboard_check_pressed(vk_left); // checando se eu apertei a tecla DOWN do teclado
-	_direta					= keyboard_check_pressed(vk_right); // checando se eu apertei a tecla DOWN do teclado
-	_menu_comprimento		= array_length(_menu);
-	var _confirma			= keyboard_check_pressed(vk_enter); // confirmar a opção desejada do menu
-	var _sel				= menus_sel[menu_pagina];
+	_cima							= keyboard_check_pressed(vk_up); // checando se eu apertei a tecla UP do teclado
+	_baixo							= keyboard_check_pressed(vk_down); // checando se eu apertei a tecla DOWN do teclado
+	_esquer							= keyboard_check_pressed(vk_left); // checando se eu apertei a tecla DOWN do teclado
+	_direta							= keyboard_check_pressed(vk_right); // checando se eu apertei a tecla DOWN do teclado
+	_menu_comprimento				= array_length(_menu);
+	var _confirma					= keyboard_check_pressed(vk_enter); // confirmar a opção desejada do menu
+	var _sel						= menus_sel[menu_pagina];
 	
 	if(!menu_interno) // só consigo selecionar menu vertical caso eu não esteja em um menu lateral
 	{
