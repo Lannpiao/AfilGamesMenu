@@ -1,5 +1,9 @@
-// INICIANDO VARIÁVEIS
+// VARIÁVEIS DE SOM
+audio_play_sound(snd_volume_test, 1, true);
+volume_musica	= 0;
 
+// INICIANDO VARIÁVEIS
+audio_play_sound(snd_volume_test, 1, true);
 sel				= 0; // valor selecionado no menu
 menu_pagina		= 0; // Variável responável por qual menu mostrar
 _sair			= noone
@@ -76,12 +80,14 @@ criar_menu		= function(_menu)
 	var _texto_altu			= string_height("I") + 10; // Altura do texto + uma margem 
 	var _menu_altu			= (_texto_altu * _menu_comprimento) / 2; // Posição central do menu
 	var _cor				= c_white; // cor do menu nas opções não selecionado
+	
 
 	for(var i = 0; i < _menu_comprimento; i++)
 	{
 	
 		var _text_option	= _menu[i][0] // peganod os valores de menu
-	
+		var _texto_larg			= string_width(_text_option)
+		
 		// SELECIONANDO OPÇÃO
 		if(menus_sel[menu_pagina] == i)
 		{
@@ -91,6 +97,15 @@ criar_menu		= function(_menu)
 		else _cor			= c_white // resetando a cor nas opções não selecionada
 		
 		
+		
+		if(point_in_rectangle(_mouse_pos_x, _mouse_pos_y, _menu_pos_x - _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu), _menu_pos_x + _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu) + _texto_altu -10))
+		{
+			menus_sel[menu_pagina] = i
+		}
+		
+		
+		
+		draw_rectangle(_menu_pos_x - _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu), _menu_pos_x + _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu) + _texto_altu -10, true)
 		draw_set_halign(fa_center) // alinhando texto ao centro da tela
 		draw_text_color(_menu_pos_x, _menu_pos_y - _menu_altu + (i * _texto_altu), _text_option, _cor, _cor, _cor, _cor, 1) // desenhando menu PRINCIPAL
 	
@@ -145,23 +160,32 @@ configura_tela		= function(_indece)
 {
 	switch(_indece)
 	{
-		case 0: window_set_fullscreen(true); break; // tela em modo janela
+		case 0: window_set_fullscreen(false); break; // tela em modo janela
 		
-		case 1: window_set_fullscreen(false); break; // tela em modo tela cheia
+		case 1: window_set_fullscreen(true); break; // tela em modo tela cheia
 	}
+}
+configura_volume		= function(_indece)
+{
+	audio_sound_gain(snd_volume_test, _indece/100, 0)	
 }
 
 #endregion
-menu_principal		=	[
 
-						["Iniciar", MENU_ACAO.CHAMA_METODO, iniciar_jogo], // Opção Iniciar do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- inicia o jogo
-						["Opções", MENU_ACAO.CHAMA_MENU, MENU_LISTA.MENU_OPCOES], // Opção Opções do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- chama o menu opções
-						["Sair", MENU_ACAO.CHAMA_METODO, fechar_jogo] // Opção Sair do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- fecha o jogo				
+
+
+#region //MENUS
+menu_principal		=	[
+						//OPÇÕES		AÇÃO A SER FEITA			FUNÇÃO OU SUBMENU
+						["Iniciar",		MENU_ACAO.CHAMA_METODO,		iniciar_jogo], // Opção Iniciar do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- inicia o jogo
+						["Opções",		MENU_ACAO.CHAMA_MENU,		MENU_LISTA.MENU_OPCOES], // Opção Opções do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- chama o menu opções
+						["Sair",		MENU_ACAO.CHAMA_METODO,		fechar_jogo] // Opção Sair do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- fecha o jogo				
 ];
 menu_opcoes			=	[
-						["Volume", MENU_ACAO.CHAMA_METODO, iniciar_jogo], // Opção Volume do menu, chamamos o metodo para alterar o volume do jogo
-						["Tela Cheia", MENU_ACAO.CHAMA_AJUSTES, configura_tela, 1, ["Ativado", "Desativado"]], // Opção Tela do menu, chamamos o metodo para alterar entre tela cheia e modo janela
-						["Voltar", MENU_ACAO.CHAMA_MENU, MENU_LISTA.MENU_PRINCIPAL] // Opção Sair do menu, chamamos o metodo para voltar para o menu anterior			
+
+						["Volume",		MENU_ACAO.CHAMA_AJUSTES,	configura_volume, 0, ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]], // Opção Volume do menu, chamamos o metodo para alterar o volume do jogo
+						["Tela Cheia",	MENU_ACAO.CHAMA_AJUSTES,	configura_tela, 0, ["Desativado", "Ativado"]], // Opção Tela do menu, chamamos o metodo para alterar entre tela cheia e modo janela
+						["Voltar",		MENU_ACAO.CHAMA_MENU,		MENU_LISTA.MENU_PRINCIPAL] // Opção Sair do menu, chamamos o metodo para voltar para o menu anterior			
 ];
 
 
@@ -171,3 +195,4 @@ menus				= [menu_principal, menu_opcoes] // Organizando todos os menus numa list
 // salvando a seleção de cada menu
 menus_sel			= array_create(array_length(menus), 0);
 menu_interno		= false; // variável pra checar se estou no menu interno de alguma opção
+#endregion

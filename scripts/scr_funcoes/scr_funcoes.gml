@@ -10,8 +10,4 @@ enum MENU_LISTA
 {
 	MENU_PRINCIPAL, // selecionando qual método vai rodar
 	MENU_OPCOES, // caso a opção tenha um menu interno, nós o chamamos
-	MENU_TELA, 
-	MENU_VOLUME
 }
-
-///
