@@ -18,5 +18,6 @@
   ],
   "ResourceOrderSettings": [
     {"name":"rm_gameplay","order":1,"path":"rooms/rm_gameplay/rm_gameplay.yy",},
+    {"name":"obj_retornar","order":1,"path":"objects/obj_retornar/obj_retornar.yy",},
   ],
 }
