@@ -128,7 +128,7 @@ criar_menu		= function(_menu)
 		
 		
 		
-		draw_rectangle(_menu_pos_x - _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu), _menu_pos_x + _texto_larg/2, _menu_pos_y - _menu_altu + (i * _texto_altu) + _texto_altu -10, true)
+		
 		draw_set_halign(fa_center) // alinhando texto ao centro da tela
 		draw_text_color(_menu_pos_x, _menu_pos_y - _menu_altu + (i * _texto_altu), _text_option, _cor, _cor, _cor, _cor, 1) // desenhando menu PRINCIPAL
 	
