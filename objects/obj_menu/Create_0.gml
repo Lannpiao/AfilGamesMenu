@@ -207,16 +207,25 @@ configura_volume		= function(_indece)
 
 #region //MENUS
 menu_principal		=	[
-						//OPÇÕES		AÇÃO A SER FEITA			FUNÇÃO OU SUBMENU
+					//	[OPÇÕES			AÇÃO A SER FEITA			FUNÇÃO OU SUBMENU]
 						["Iniciar",		MENU_ACAO.CHAMA_METODO,		iniciar_jogo], // Opção Iniciar do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- inicia o jogo
 						["Opções",		MENU_ACAO.CHAMA_MENU,		MENU_LISTA.MENU_OPCOES], // Opção Opções do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- chama o menu opções
 						["Sair",		MENU_ACAO.CHAMA_METODO,		fechar_jogo] // Opção Sair do menu, chamamos o metodo para selecionar a opção certa na função cria_menu() e teclado() -- fecha o jogo				
+/* 
+PARA ADICONAR MAIS OPÇÕES BASATAR CRIAR OUTRO VETOR
+["NOME", AÇÃO, FUNÇÃO/MENU]
+*/
+
 ];
 menu_opcoes			=	[
-
-						["Volume",		MENU_ACAO.CHAMA_AJUSTES,	configura_volume, 0, ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]], // Opção Volume do menu, chamamos o metodo para alterar o volume do jogo
-						["Tela Cheia",	MENU_ACAO.CHAMA_AJUSTES,	configura_tela, 0, ["Desativado", "Ativado"]], // Opção Tela do menu, chamamos o metodo para alterar entre tela cheia e modo janela
+					//	["NOME",		AÇÃO,						FUNÇÃO,						(ÍNDECE INICIAL PARA O MENU INTERNO),		(MENU INTERNO)]
+						["Volume",		MENU_ACAO.CHAMA_AJUSTES,	configura_volume,			0,											["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]], // Opção Volume do menu, chamamos o metodo para alterar o volume do jogo
+						["Tela Cheia",	MENU_ACAO.CHAMA_AJUSTES,	configura_tela,				0,											["Desativado", "Ativado"]], // Opção Tela do menu, chamamos o metodo para alterar entre tela cheia e modo janela
 						["Voltar",		MENU_ACAO.CHAMA_MENU,		MENU_LISTA.MENU_PRINCIPAL] // Opção Sair do menu, chamamos o metodo para voltar para o menu anterior			
+/* 
+PARA ADICONAR MAIS OPÇÕES BASATAR CRIAR OUTRO VETOR
+["NOME", AÇÃO, FUNÇÃO/MENU, (ÍNDECE DO MENU INTERNO), ([OUTRO VETOR CASO EXISTA PARA MENU INTERNO])]
+*/
 ];
 
 
